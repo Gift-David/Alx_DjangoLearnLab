@@ -8,6 +8,6 @@ from .models import Book
 
 class BookAdmin(admin.ModelAdmin):
     list_filter = ('title', 'author', 'published_date')
-    publication_year = ('title', 'author')
+    publication_years = ('title', 'author')
 
 admin.site.register(Book, BookAdmin)
