@@ -9,4 +9,4 @@ Author.objects.get(name=author_name)
 
 Author.objects.filter(author=author)
 
-Librarian.objects.get(name=librarian_name)
+Librarian.objects.get(library=librarian_name)
