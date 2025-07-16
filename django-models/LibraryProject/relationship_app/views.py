@@ -6,7 +6,8 @@ from django.views.generic import ListView
 
 def list_books(request):
     books = Book.objects.all()
-    return render(request, '', books)
+    set = {'books': books}
+    return render(request, 'relationship_app/list_books.html', books)
 
 class ViewLibrary(ListView):
     pass
