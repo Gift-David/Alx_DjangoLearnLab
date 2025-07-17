@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Book, library
-from .models import Library
+# from .models import Library
 from django.http import HttpResponse
 from django.views.generic.detail import DetailView
 import datetime
@@ -10,8 +10,8 @@ import datetime
 def list_books(request):
     books = Book.objects.all()
     set = {'boks': books}
-    # return HttpResponse(books)
-    return render(request, 'relationship_app/list_books.html', set)
+    return HttpResponse('books')
+    # return render(request, 'relationship_app/list_books.html', set)
 
 class ViewLibrary(DetailView):
     model = Book
