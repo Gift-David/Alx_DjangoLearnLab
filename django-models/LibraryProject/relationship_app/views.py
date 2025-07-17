@@ -13,8 +13,10 @@ def list_books(request):
     # return HttpResponse(books)
     return render(request, 'relationship_app/list_books.html', set)
 
-# class ViewLibrary(ListView):
-#     pass
+class ViewLibrary(ListView):
+    model = Book
+    template_name = 'relationship_app/library_detail.html'
+    pass
 
 def current_datetime(request):
     now = datetime.datetime.now()
