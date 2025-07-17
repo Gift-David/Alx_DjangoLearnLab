@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .models import Book, library
-from django.views.generic import ListView
 from .models import Library
 from django.http import HttpResponse
+from django.views.generic.detail import DetailView
 import datetime
 
 # Create your views here.
@@ -13,7 +13,7 @@ def list_books(request):
     # return HttpResponse(books)
     return render(request, 'relationship_app/list_books.html', set)
 
-class ViewLibrary(ListView):
+class ViewLibrary(DetailView):
     model = Book
     template_name = 'relationship_app/library_detail.html'
     pass
