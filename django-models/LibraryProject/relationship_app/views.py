@@ -1,24 +1,20 @@
 from django.shortcuts import render
 from .models import Book, library
 # from .models import Library
-from django.http import HttpResponse
 from django.views.generic.detail import DetailView
-import datetime
 
 # Create your views here.
 
 def list_books(request):
     books = Book.objects.all()
-    set = {'boks': books}
-    return HttpResponse('books')
-    # return render(request, 'relationship_app/list_books.html', set)
+    context = {
+        'books': books
+    }
+    return render(request, 'relationship_app/list_books.html', context)
 
 class ViewLibrary(DetailView):
     model = Book
     template_name = 'relationship_app/library_detail.html'
-    pass
 
-def current_datetime(request):
-    now = datetime.datetime.now()
-    html = '<html lang="en"><body> it is now %s. </body> </html>' % now
-    return HttpResponse(html)
+
+# class LoginView()
