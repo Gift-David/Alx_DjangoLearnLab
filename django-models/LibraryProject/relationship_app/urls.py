@@ -2,15 +2,22 @@ from django.urls import path
 from .models import Book
 from . import views
 from .views import list_books, UserCreationForm
+from . import admin_view, librarian_view, member_view
+from .admin_view import admin_dashboard
+# from .librarian_view import librarian_dashboard
+from .member_view import member_dashboard
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('', views.list_books , name='book'),
     # path('', views.current_datetime , name='time'),
     path('', views.ViewLibrary.as_view(template_name='relationship_app/library_detail'), name='view_library' ),
-    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
-    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
-    path('register/', UserCreationForm.as_view(template_name='relationship_app/register.html'), name='register')
+    path('accounts/login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
+    path('accounts/logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+    path('accounts/register/', UserCreationForm.as_view(template_name='relationship_app/register.html'), name='register'),
+    path('superadmin/', admin_view.admin_dashboard, name='admin'),
+    # path('librarian/', librarian_view.librarian_dashboard, name='librarian'),
+    path('member/', member_view.member_dashboard, name='member')
 ]
 
 

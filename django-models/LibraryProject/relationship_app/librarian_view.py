@@ -4,15 +4,15 @@ from django.shortcuts import render, redirect, HttpResponse
 
 userprofile = UserProfile
 
-def is_admin(user):
+def is_librarian(user):
     if user.is_authenticated:
         return False
     
     try:
-        return userprofile.role == 'admin'
+        return userprofile.role == 'librarian'
     except userprofile.DoesNotExist:
         return False
     
-@user_passes_test(is_admin)
+@user_passes_test(is_librarian)
 def admin_dashboard(request):
-    return HttpResponse("Admin Dashboard")
+    return HttpResponse("Librarian Dashboard")

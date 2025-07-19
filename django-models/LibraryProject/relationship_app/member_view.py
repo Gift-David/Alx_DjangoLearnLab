@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, HttpResponse
 
 userprofile = UserProfile
 
-def is_admin(user):
+def is_member(user):
     if user.is_authenticated:
         return False
     
@@ -13,6 +13,6 @@ def is_admin(user):
     except userprofile.DoesNotExist:
         return False
     
-@user_passes_test(is_admin)
-def admin_dashboard(request):
-    return HttpResponse("Admin Dashboard")
+@user_passes_test(is_member)
+def member_dashboard(request):
+    return HttpResponse("Members Dashboard")
