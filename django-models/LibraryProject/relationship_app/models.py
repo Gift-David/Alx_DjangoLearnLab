@@ -10,6 +10,13 @@ class Author(models.Model):
         return self.name
 
 class Book(models.Model):
+    class Meta:
+        permissions = (
+            ('can_add_book', 'Can Delete Book'),
+            ('can_change_book', 'Can Change Book'),
+            ('can_delete_book', 'Can Delete Book')
+        )
+
     title = models.CharField(max_length=100)
     author = models.ForeignKey('Author', on_delete=models.CASCADE)
 

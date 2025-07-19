@@ -1,7 +1,7 @@
 from django.urls import path
 from .models import Book
 from . import views
-from .views import list_books, UserCreationForm
+from .views import list_books, UserCreationForm, add_book, edit_book, delete_book
 from . import admin_view, librarian_view, member_view
 from .admin_view import admin_dashboard
 # from .librarian_view import librarian_dashboard
@@ -17,7 +17,10 @@ urlpatterns = [
     path('accounts/register/', UserCreationForm.as_view(template_name='relationship_app/register.html'), name='register'),
     path('superadmin/', admin_view.admin_dashboard, name='admin'),
     # path('librarian/', librarian_view.librarian_dashboard, name='librarian'),
-    path('member/', member_view.member_dashboard, name='member')
+    path('member/', member_view.member_dashboard, name='member'),
+    path('books/add/', views.add_book, name='add_book'),
+    path('books/edit/', views.edit_book, name='edit_book'),
+    path('books/delete/', views.delete_book, name='delete_book')
 ]
 
 

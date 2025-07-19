@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Book, library, UserProfile
 from django.contrib.auth.models import User
 # from .models import Library
@@ -10,30 +10,46 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from .forms import BookForm, RegisterationForm
+from .forms import BookForm
 
 # Create your views here.
 
 @login_required
-@permission_required()
+@permission_required('can_add_book')
 def add_book(request):
     if request.method == "POST":
         book_form = BookForm(request.POST)
         if book_form.is_valid():
             book_form.save()
             return redirect()
+    else:
+        book_form = BookForm()
+
+    return HttpResponse('add book')
 
 @login_required
-@permission_required()
-def change_book(request, pk):
+@permission_required('can_change_book')
+def edit_book(request, pk):
     book = Book.objects.get(pk=pk)
+    if request.method == "POST":
+        book_form = BookForm(request.POST, instance=book)
+        if book_form.is_valid():
+            book_form.save()
+            return redirect()
+    else:
+        book_form = BookForm(instance=book)
     pass
-
+    return HttpResponse('edit book')
 
 @login_required
-@permission_required()
+@permission_required('can_delete_book')
 def delete_book(request, pk):
+    book = Book.objects.get(pk=pk)
+    if request.method == "POST":
+        book.delete()
+        return redirect()
     pass
+    return HttpResponse('delete book')
 
 
 @login_required
