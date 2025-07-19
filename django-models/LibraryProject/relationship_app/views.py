@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .forms import BookForm
@@ -15,7 +15,7 @@ from .forms import BookForm
 # Create your views here.
 
 @login_required
-@permission_required('can_add_book')
+@permission_required('relationship_app.can_add_book', raise_exception=True)
 def add_book(request):
     if request.method == "POST":
         book_form = BookForm(request.POST)
@@ -28,7 +28,7 @@ def add_book(request):
     return HttpResponse('add book')
 
 @login_required
-@permission_required('can_change_book')
+@permission_required('relationship_app.can_add_book', raise_exception=True)
 def edit_book(request, pk):
     book = Book.objects.get(pk=pk)
     if request.method == "POST":
@@ -42,7 +42,7 @@ def edit_book(request, pk):
     return HttpResponse('edit book')
 
 @login_required
-@permission_required('can_delete_book')
+@permission_required('relationship_app.can_add_book', raise_exception=True)
 def delete_book(request, pk):
     book = Book.objects.get(pk=pk)
     if request.method == "POST":
