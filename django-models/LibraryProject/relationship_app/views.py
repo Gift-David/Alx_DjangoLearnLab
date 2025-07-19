@@ -28,7 +28,7 @@ def add_book(request):
     return HttpResponse('add book')
 
 @login_required
-@permission_required('relationship_app.can_add_book', raise_exception=True)
+@permission_required('relationship_app.can_change_book', raise_exception=True)
 def edit_book(request, pk):
     book = Book.objects.get(pk=pk)
     if request.method == "POST":
@@ -42,7 +42,7 @@ def edit_book(request, pk):
     return HttpResponse('edit book')
 
 @login_required
-@permission_required('relationship_app.can_add_book', raise_exception=True)
+@permission_required('relationship_app.can_delete_book', raise_exception=True)
 def delete_book(request, pk):
     book = Book.objects.get(pk=pk)
     if request.method == "POST":
