@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Book, library, UserProfile
 from django.contrib.auth.models import User
 # from .models import Library
@@ -7,11 +7,34 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from .forms import BookForm, RegisterationForm
 
 # Create your views here.
+
+@login_required
+@permission_required()
+def add_book(request):
+    if request.method == "POST":
+        book_form = BookForm(request.POST)
+        if book_form.is_valid():
+            book_form.save()
+            return redirect()
+
+@login_required
+@permission_required()
+def change_book(request, pk):
+    book = Book.objects.get(pk=pk)
+    pass
+
+
+@login_required
+@permission_required()
+def delete_book(request, pk):
+    pass
+
 
 @login_required
 def list_books(request):

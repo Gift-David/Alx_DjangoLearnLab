@@ -14,5 +14,5 @@ def is_librarian(user):
         return False
     
 @user_passes_test(is_librarian)
-def admin_dashboard(request):
+def librarian_dashboard(request):
     return HttpResponse("Librarian Dashboard")
