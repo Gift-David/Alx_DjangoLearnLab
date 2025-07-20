@@ -84,7 +84,7 @@ def is_admin(user):
     
 @login_required   
 @user_passes_test(is_admin)
-def admin_dashboard(request):
+def admin_view(request):
     return HttpResponse("Admin Dashboard")
 
 # UserCreationForm()
