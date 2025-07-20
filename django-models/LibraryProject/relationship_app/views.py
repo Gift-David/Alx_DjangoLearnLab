@@ -88,3 +88,4 @@ def admin_view(request):
     return HttpResponse("Admin Dashboard")
 
 # UserCreationForm()
+# Admin_view()
