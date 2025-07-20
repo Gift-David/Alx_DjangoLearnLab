@@ -89,3 +89,4 @@ def admin_view(request):
 
 # UserCreationForm()
 # Admin_view()
+# return hasattr(user, 'userprofile') and user.userprofile.role == 'admin'
