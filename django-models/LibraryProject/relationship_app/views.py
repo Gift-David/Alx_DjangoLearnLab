@@ -3,11 +3,12 @@ from .models import Book, library, UserProfile
 from django.contrib.auth.models import User
 # from .models import Library
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth import login
-from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.decorators import permission_required, login_required, user_passes_test
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .forms import BookForm
@@ -61,9 +62,8 @@ def list_books(request):
     return render(request, 'relationship_app/list_books.html', context)
 
 class ViewLibrary(DetailView):
-    model = Book
+    model = library
     template_name = 'relationship_app/library_detail.html'
-
 
 class UserCreationForm(CreateView):
     form_class = UserCreationForm
@@ -78,5 +78,13 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
+
+def is_admin(user):
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'admin'
+    
+@login_required   
+@user_passes_test(is_admin)
+def admin_dashboard(request):
+    return HttpResponse("Admin Dashboard")
 
 # UserCreationForm()
