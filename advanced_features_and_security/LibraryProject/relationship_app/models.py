@@ -1,24 +1,7 @@
 from django.db import models
-from django.contrib import admin
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import User
 
 # Create your models here.
-
-class CustomUser(AbstractUser):
-    # email = models.EmailField(unique=True, blank=False)
-    date_of_birth = models.DateField(blank=False)
-    profile_photo = models.ImageField(upload_to='static/profile_pics', blank=True)
-    # USERNAME_FIELD = email
-
-    # def __str__(self):
-    #     return f"{self.username}"
-    
-class CustomUserManager(BaseUserManager):
-    def create_user(self, email, date_of_birth, profile_photo, password=None):
-        pass
-
-    def create_superuser(self, email, date_of_birth, profile_photo, password=None):
-        pass
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -56,7 +39,7 @@ class Librarian(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField('CustomUser', on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=10, choices=[('admin', 'Admin'), ('librarian', 'Librarian'), ('member', 'Member')])
 
     # def __str__(self):

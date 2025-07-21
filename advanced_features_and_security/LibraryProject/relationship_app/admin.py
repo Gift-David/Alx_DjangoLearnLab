@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Book, UserProfile, library, CustomUser
+from .models import Author, Book, UserProfile, library
 
 # Register your models here.
 
@@ -9,12 +9,11 @@ from .models import Author, Book, UserProfile, library, CustomUser
 
 # admin.site.register(BookAdmin)
 
-class CustomAdmin(admin.ModelAdmin):
-    list_display = ['date_of_birth', 'profile_photo']
+
 
 admin.site.register(Author)
 admin.site.register(Book)
 admin.site.register(UserProfile)
 admin.site.register(library)
-admin.site.register(CustomUser, CustomAdmin)
+
 # admin.site.register()
