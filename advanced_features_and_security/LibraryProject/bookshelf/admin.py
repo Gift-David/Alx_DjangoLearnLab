@@ -7,8 +7,8 @@ from .models import Book, CustomUser
 #     list_filter = ('title', 'author', 'publication_year')
 #     search_fields = ('title', 'author')
 
-class CustomAdmin(admin.ModelAdmin):
+class CustomUserAdmin(admin.ModelAdmin):
     list_display = ['date_of_birth', 'profile_photo']
 
 admin.site.register(Book)
-admin.site.register(CustomUser, CustomAdmin)
+admin.site.register(CustomUser, CustomUserAdmin)
