@@ -134,7 +134,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # The age of session cookies, in seconds. Default is 2 weeks (1209600 seconds).
 # For 15 minutes idle timeout: 15 * 60 = 900 seconds
 # For 30 minutes idle timeout: 30 * 60 = 1800 seconds
-SESSION_COOKIE_AGE = 900 # Example: 15 minutes (900 seconds)
+SESSION_COOKIE_AGE = 600 # Example: 15 minutes (900 seconds)
 
 # Whether to save the session every time a request is made.
 # If True, the session cookie's expiration will be reset on every request,
