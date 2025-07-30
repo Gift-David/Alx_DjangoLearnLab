@@ -16,17 +16,17 @@ from .forms import BookForm
 # Create your views here.
 
 @login_required
-@permission_required('relationship_app.can_add_book', raise_exception=True)
+# @permission_required('relationship_app.can_add_book', raise_exception=True)
 def add_book(request):
     if request.method == "POST":
         book_form = BookForm(request.POST)
         if book_form.is_valid():
             book_form.save()
-            return redirect()
+            return redirect('admin-dashboard/')
     else:
         book_form = BookForm()
 
-    return HttpResponse('add book')
+    return render(request, 'relationship_app/admin_view.html', {'book_form': book_form})
 
 @login_required
 @permission_required('relationship_app.can_change_book', raise_exception=True)
