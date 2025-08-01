@@ -124,4 +124,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEFAULT_AUTHENTICATION_CLASSES = True
+DEFAULT_AUTHENTICATION_CLASSES = [
+    "rest_framework.authentication.TokenAuthentication",
+]
