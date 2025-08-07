@@ -17,7 +17,7 @@ class BookListView(generics.ListAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'author']
     filter_backends = [filters.OrderingFilter]
-    ordering_fields = ['username', 'email']
+    ordering_fields = ['title', 'publication_year']
 
 class BookDetailView(generics.RetrieveAPIView):
     serializer_class = BookSerializer
