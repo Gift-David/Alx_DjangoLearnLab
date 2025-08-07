@@ -14,7 +14,10 @@ class BookListView(generics.ListAPIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
 
+    filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'author']
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['username', 'email']
 
 class BookDetailView(generics.RetrieveAPIView):
     serializer_class = BookSerializer
