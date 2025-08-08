@@ -47,3 +47,8 @@ class BookDeleteView(generics.DestroyAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated, IsAdminUser]
 
+
+class AuthorListView(generics.ListCreateAPIView):
+    queryset = Author.objects.all()
+    serializer_class = AuthorSerializer
+    # permission_classes = [IsAuthenticatedOrReadOnly]
