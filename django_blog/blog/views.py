@@ -70,3 +70,5 @@ class PostUpdateView(UpdateView):
 class PostDeleteView(DeleteView):
     model = Post
     template_name = 'blog/blog_post.html'
+
+# "POST", "method", "save()"
