@@ -47,6 +47,7 @@ class PostCreateView(CreateView):
 
     def form_valid(self, post):
         post.instance.author = self.request.user
+    
         return super().form_valid(post)
 
 # To get an individual blog post
