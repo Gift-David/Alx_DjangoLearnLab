@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from .forms import PostCreationForm, CommentCreationForm
+from .forms import PostCreationForm, CommentForm
 from .models import Post, Comment
 
 # Create your views here.
@@ -87,7 +87,7 @@ class PostDeleteView(DeleteView):
     CRUD operations for comments
 '''
 class CommentCreateView(CreateView):
-    form_class = CommentCreationForm
+    form_class = CommentForm
     template_name = 'blog/create_comment.html'
     context_object_name = 'form'
 
@@ -114,6 +114,13 @@ class CommentListView(ListView):
 
         context['post'] = Post.objects.get(pk=self.kwargs.get('pk'))
         return context
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    form_class = CommentForm
+    success_url = reverse_lazy('list_posts')
+    template_name = 'blog/create_post.html'
+    context_object_name = 'form'
     
 class CommentDeleteView(DeleteView):
     model = Comment
