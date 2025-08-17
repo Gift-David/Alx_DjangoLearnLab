@@ -21,3 +21,6 @@ urlpatterns = [
     # search url
     path('post/search', post_search_view, name='search')
 ]
+
+
+# ["tags/<slug:tag_slug>/", "PostByTagListView.as_view()"]

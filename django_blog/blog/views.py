@@ -160,4 +160,3 @@ class CommentDeleteView(DeleteView):
 
 
 # "POST", "method", "save()"
-# ["tags/<slug:tag_slug>/", "PostByTagListView.as_view()"]
