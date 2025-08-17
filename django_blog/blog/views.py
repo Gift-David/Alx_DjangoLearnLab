@@ -123,18 +123,38 @@ class CommentCreateView(CreateView):
     def get_success_url(self):
         post_id = self.object.post.pk
         return reverse_lazy('list_comments', kwargs={'pk': post_id})
-    
-
-class CommentListView(ListView):
-    model = Comment
-    template_name = 'blog/list_comments.html'
-    context_object_name = 'comments'
-    ordering = '-created_at'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         context['post'] = Post.objects.get(pk=self.kwargs.get('pk'))
+        return context
+    
+
+class CommentListView(ListView):
+    model = Comment
+    template_name = 'blog/list_comments.html'
+    # context_object_name = 'comments'
+    ordering = '-created_at'
+
+    def form_valid(self, form):
+        # Retrieve the single Post object using the 'pk' from the URL
+        # The 'pk' is passed from the URL pattern to the view's kwargs
+        post = Post.objects.get(pk=self.kwargs.get('pk'))
+
+        # Assign the retrieved Post instance to the comment's post field
+        form.instance.post = post
+        
+        # Save the comment
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        posts = Post.objects.get(pk=self.kwargs.get('pk'))
+
+        context['post'] = posts
+        context['comments'] = Comment.objects.all().filter(post=posts)
         return context
 
 class CommentUpdateView(UpdateView):
