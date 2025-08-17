@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import PostCreationForm, CommentForm
 from .models import Post, Comment
+from django.db.models import Q
 
 # Create your views here.
 
@@ -34,6 +35,26 @@ class UserProfileView(DetailView):
         context['posts'] = Post.objects.all().filter(author=self.request.user).order_by('-published_date')
         return context
 
+'''
+    Search functionality
+'''
+def post_search_view(request):
+    query = request.GET.get('q')
+    posts = Post.objects.none()
+
+    if query:
+        posts = Post.objects.filter(Q(title__icontains=query) |
+            Q(content__icontains=query) |
+            Q(author__username__icontains=query) |
+            Q(tags__name__icontains=query)
+        ).distinct()
+
+    context = {
+        'query': query,
+        'posts': posts,
+    }
+    
+    return render(request, 'blog/search.html', context)
 
 '''
     CRUD operations for blog posts
