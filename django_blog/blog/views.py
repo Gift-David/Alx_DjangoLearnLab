@@ -114,6 +114,13 @@ class CommentListView(ListView):
 
         context['post'] = Post.objects.get(pk=self.kwargs.get('pk'))
         return context
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    form_class = CommentCreationForm
+    success_url = reverse_lazy('list_posts')
+    template_name = 'blog/create_post.html'
+    context_object_name = 'form'
     
 class CommentDeleteView(DeleteView):
     model = Comment
