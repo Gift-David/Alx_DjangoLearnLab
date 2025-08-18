@@ -5,16 +5,7 @@
   <h2>Your daily dose of insights, tutorials, and career advice.</h2>
   <ul>
     <h2>Latest Blog Posts</h2>
-    {% for post in posts %}
-      <li>
-            <h4>{{ post.title|title }}</h4>
-            <p>
-                {{post.content|truncatewords:18}} <a href="{% url 'viewing_post' pk=post.id %}">Read More</a>
-            </p>
-            <h6>By: {{ post.author}}</h6>
-            <h6>{{ post.published_date}}</h6>
-      </li>
-    {% endfor %}
+    {% include 'blog/posts.html' %}
     <a href="{% url 'list_posts' %}">
         <button>View All Blogs</button>
     </a>

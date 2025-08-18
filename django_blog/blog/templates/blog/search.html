@@ -3,19 +3,14 @@
 {% block content %}
     {% if posts %}
         <h2>Search Results for "{{ query }}".</h2>
-        {% for post in posts %}
-            <h4>{{ post.title|title }}</h4>
-            <p>
-                {{post.content|truncatewords:18}} <a href="{% url 'viewing_post' pk=post.id %}">Read More</a>
-            </p>
-            <h6>By: {{ post.author}}</h6>
-            <h6>{{ post.published_date}}</h6>
-        {% endfor %}
+        {% include 'blog/posts.html' %}
     {% else %}
         {% if query %}
             <p>No results found for "{{ query }}".</p>
+            {% include 'blog/posts.html' %}
         {% endif %}
-        <h4>See Recent Posts...</h4>
+            <h4>See Recent Posts...</h4>
+            {% include 'blog/posts.html' %}
+            
     {% endif %}
-
 {% endblock %}

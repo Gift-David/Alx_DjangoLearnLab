@@ -13,6 +13,12 @@
             </p>
             <h6>By: {{ post.author|title }}</h6>
             <h6>{{ post.published_date}}</h6>
+            <ul style="display: flex;">
+                <h5>Tags:</h5>
+                {% for i in post.tags.all %}
+                  <h6 style="background-color: #f1f1f1; margin-left: 5px; padding: 5px;">{{ i }}</h6>
+                {% endfor %}
+            </ul>
       </li>
 {% endfor %}
 

@@ -40,7 +40,7 @@ class UserProfileView(DetailView):
 '''
 def post_search_view(request):
     query = request.GET.get('q')
-    posts = Post.objects.none()
+    posts = Post.objects.all()
 
     if query:
         posts = Post.objects.filter(Q(title__icontains=query) |
@@ -88,6 +88,15 @@ class PostListView(ListView):
     template_name = 'blog/list_posts.html'
     context_object_name = 'posts'
     ordering = '-published_date'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+
+    #     post = Post.objects.get(self)
+
+    #     context['tags'] = post.tags.all()
+
+    #     return context
 
 class PostUpdateView(UpdateView):
     model = Post
