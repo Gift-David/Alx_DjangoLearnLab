@@ -10,4 +10,9 @@ urlpatterns = [
     path('<int:pk>/', views.PostDeleteAPIView.as_view(), name='delete_post'),
 
     # Endpoints for comments
+    path('<int:pk>/comments/create/', views.CommentCreateAPIView.as_view(), name='create_comment'),
+    path('<int:pk>/comments/<int:pk>/edit/', views.CommentUpdateAPIView.as_view(), name='update_comment'),
+    path('<int:pk>/comments/', views.CommentListAPIView.as_view(), name='list_comments'),
+    path('<int:pk>/comments/<int:pk>/', views.CommentRetrieveAPIView.as_view(), name='retreive_comment'),
+    path('<int:pk>/comments/<int:pk>/delete/', views.CommentDeleteAPIView.as_view(), name='delete_comment'),
 ]

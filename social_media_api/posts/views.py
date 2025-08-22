@@ -15,20 +15,49 @@ class PostCreateAPIView(generics.CreateAPIView):
 
 class PostUpdateAPIView(generics.UpdateAPIView):
     model = Post
-    serializer_class = CommentSerializer
+    serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 
 class PostListAPIView(generics.ListAPIView):
     model = Post
-    serializer_class = CommentSerializer
+    serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 
 class PostRetrieveAPIView(generics.RetrieveAPIView):
     model = Post
-    serializer_class = CommentSerializer
+    serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
 
 class PostDeleteAPIView(generics.DestroyAPIView):
     model = Post
+    serializer_class = PostSerializer
+    permission_classes = [IsAuthenticated]
+
+'''
+CRUD operations for Comments
+'''
+
+class CommentCreateAPIView(generics.CreateAPIView):
+    model = Comment
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+class CommentUpdateAPIView(generics.UpdateAPIView):
+    model = Comment
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+class CommentListAPIView(generics.ListAPIView):
+    model = Comment
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+class CommentRetrieveAPIView(generics.RetrieveAPIView):
+    model = Comment
+    serializer_class = CommentSerializer
+    permission_classes = [IsAuthenticated]
+
+class CommentDeleteAPIView(generics.DestroyAPIView):
+    model = Comment
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
