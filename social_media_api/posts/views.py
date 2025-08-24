@@ -20,5 +20,6 @@ class CommentViewStets(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
+# permissions.IsAuthenticated, generics.get_object_or_404(Post, pk=pk), Like.objects.get_or_create(user=request.user, post=post), Notification.objects.create
 
 
