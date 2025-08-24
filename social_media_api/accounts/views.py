@@ -11,6 +11,8 @@ from .serializers import ProfileSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics, status
+from rest_framework import permissions
+
 
 # Create your views here.
 
@@ -23,7 +25,7 @@ class ProfileView(generics.RetrieveAPIView):
     serializer_class = ProfileSerializer
 
 class FollowToggleAPIView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk, format=None):
         """
@@ -114,3 +116,5 @@ class UserFollowersListView(generics.ListAPIView):
         user = get_object_or_404(User, pk=self.kwargs['pk'])
         # Return the users who are following 'user'
         return user.followers.all().order_by('username')
+    
+# generics.GenericAPIView", "permissions.IsAuthenticated
