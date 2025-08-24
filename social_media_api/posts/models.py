@@ -22,4 +22,4 @@ class Like(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
 # user
-# permissions.IsAuthenticated", "generics.get_object_or_404(Post, pk=pk)", "Like.objects.get_or_create(user=request.user, post=post)", "Notification.objects.create"
+# permissions.IsAuthenticated, generics.get_object_or_404(Post, pk=pk), Like.objects.get_or_create(user=request.user, post=post), Notification.objects.create
