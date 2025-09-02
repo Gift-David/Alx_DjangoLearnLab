@@ -3,3 +3,4 @@
 # Features
 - User Signup and login
 - Viewing blogs
+- Search for blog posts
