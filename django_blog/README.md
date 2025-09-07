@@ -6,3 +6,5 @@
 - Search for blog posts
 
 ## Inatallations
+
+## Author
