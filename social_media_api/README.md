@@ -6,3 +6,4 @@ A custom API for a social media web app, built with django and django rest frame
 - User profile
 
 ### Get Started
+Follow these instructions to install
