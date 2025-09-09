@@ -7,3 +7,5 @@ A custom API for a social media web app, built with django and django rest frame
 
 ### Get Started
 Follow these instructions to install
+
+### Author: David Gift
