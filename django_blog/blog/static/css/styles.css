@@ -36,6 +36,18 @@ header nav ul li a {
     margin: 20px;
 }
 
+.posts {
+   display: flex; 
+}
+
+.posts h4 {
+    color: red;
+}
+
+.posts p {
+    text-align: justify;
+}
+
 footer {
     text-align: center;
     margin-top: 50px;
