@@ -116,5 +116,3 @@ class UserFollowersListView(generics.ListAPIView):
         user = get_object_or_404(User, pk=self.kwargs['pk'])
         # Return the users who are following 'user'
         return user.followers.all().order_by('username')
-    
-# generics.GenericAPIView", "permissions.IsAuthenticated
